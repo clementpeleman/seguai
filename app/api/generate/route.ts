@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
           role: 'user',
           content: `Geef vloeiende overgangen, zogenaamde segues, tussen de volgende paren van onderwerpen:
           ${topicPairs.map(pair => `${pair[0]} naar ${pair[1]}`).join('; ')}.
-          Geef enkel een overgang tussen twee opeenvolgende onderwerpen. Zorg dat de overgangen doordacht en uniek zijn.
+          Geef enkel een overgang tussen twee opeenvolgende onderwerpen. Zorg dat de overgangen doordacht en uniek zijn. Wees vooral creatief.
           Antwoord in dezelfde taal als de vraag. Voeg niets anders toe bij het antwoord dan de overgangen. Som de overgangen op. Wijk niet af.
           Geef een schematische voorstelling. Houd het beknopt.`
         },
