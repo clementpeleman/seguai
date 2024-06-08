@@ -4,20 +4,20 @@ import { useState } from 'react';
 
 export default function Home() {
     const [topics, setTopics] = useState('');
-    const [segue, setSegue] = useState('');
+    const [segues, setSegues] = useState<{ pair: string[], segue: string }[]>([]);
     const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
-        setSegue('');
+        setSegues([]);
 
         const response = await fetch('/api/generate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ topics: topics.split(',') }),
+            body: JSON.stringify({ topics: topics.split(',').map(topic => topic.trim()) }),
         });
 
         if (!response.ok) {
@@ -27,27 +27,40 @@ export default function Home() {
         }
 
         const data = await response.json();
-        setSegue(data.segue);
+        setSegues(data.segues);
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold mb-4">Segue Generator</h1>
-                <form onSubmit={handleSubmit} className="mb-4">
-                    <label htmlFor="topics" className="block text-gray-700">Onderwerpen (gescheiden door kommas):</label>
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+                <h1 className="text-4xl text-blue-600 font-bold mb-6 text-left">Segue <span className='text-orange-500'>Generator</span></h1>
+                <form onSubmit={handleSubmit} className="mb-6">
+                    <label htmlFor="topics" className="block text-lg text-gray-700 mb-2">Onderwerpen (gescheiden door kommas):</label>
                     <input
                         type="text"
                         id="topics"
                         name="topics"
                         value={topics}
                         onChange={(e) => setTopics(e.target.value)}
-                        className="mt-2 p-2 border border-gray-300 rounded w-full text-black"
+                        className="mt-1 p-3 border border-gray-300 rounded w-full text-black"
+                        placeholder="Bijv. koffie, strips, oorlog, Google"
                     />
-                    <button type="submit" className="mt-4 p-2 bg-blue-500 text-white rounded">Genereer Segue</button>
+                    <button type="submit" className="mt-4 p-3 bg-blue-500 text-white rounded w-full hover:bg-blue-600">Genereer Segue</button>
                 </form>
-                {error && <p className="text-red-500">{error}</p>}
-                {segue && <p className="mt-4 p-2 bg-green-100 rounded text-gray-700">{segue}</p>}
+                {error && <p className="text-red-500 text-center">{error}</p>}
+                {segues.length > 0 && (
+                    <div className="mt-6">
+                        <h2 className="text-2xl font-semibold mb-4">Gegenereerde Overgangen</h2>
+                        <ul className="space-y-4 list-none">
+                            {segues.map((s, index) => (
+                                <li key={index} className="bg-gray-100 p-4 rounded">
+                                    <p className="text-lg "><strong><span className='text-orange-500'>Van </span><span className="text-blue-600">{s.pair[0]}</span><span className='text-orange-500'> naar </span><span className="text-blue-600">{s.pair[1]}</span></strong></p>
+                                    <p className="mt-2 text-gray-700">{s.segue}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
         </div>
     );
