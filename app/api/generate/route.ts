@@ -24,9 +24,12 @@ export async function POST(req: NextRequest) {
           role: 'user',
           content: `Geef vloeiende overgangen, zogenaamde segues, tussen de volgende paren van onderwerpen:
           ${topicPairs.map(pair => `${pair[0]} naar ${pair[1]}`).join('; ')}.
-          Geef enkel een overgang tussen twee opeenvolgende onderwerpen. Zorg dat de overgangen doordacht en uniek zijn. Wees vooral creatief.
-          Antwoord in dezelfde taal als de vraag. Voeg niets anders toe bij het antwoord dan de overgangen. Som de overgangen op. Wijk niet af.
-          Geef een schematische voorstelling. Houd het beknopt.`
+          Geef enkel een overgang tussen twee opeenvolgende onderwerpen. Zorg dat de overgangen doordacht en uniek zijn. 
+          Antwoord in dezelfde taal als de vraag. Voeg niets anders toe bij het antwoord dan de overgangen. Wijk niet af.
+          
+          Houd het vooral kort en bondig. Gebruik maximaal 1 korte zin per overgang.
+          
+          Wees creatief en origineel. Vermijd clichés en voor de hand liggende overgangen.`
         },
       ],
       model: 'Qwen/Qwen2-72B-Instruct',
