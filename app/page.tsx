@@ -44,7 +44,7 @@ export default function Home() {
                 <div className="z-10 flex flex-col md:flex-row gap-8 w-full max-w-7xl">
                     <div className="w-full md:w-1/2 xl:w-1/3">
                         <form onSubmit={handleSubmit} className="bg-gray-100 bg-opacity-30 backdrop-filter backdrop-blur-lg py-8 px-8 rounded-xl shadow-lg">
-                            <label htmlFor="topics" className="block text-2xl font-bold text-indigo-600 mt-3">Subjects</label>
+                            <label htmlFor="topics" className="block text-2xl font-bold text-gray-800 mt-3">Subjects</label>
                             <p className="text-gray-600">Enter a list of subjects separated by commas</p>
                             <input
                                 type="text"
@@ -67,7 +67,7 @@ export default function Home() {
                         ) : (
                             segues.length > 0 && (
                                 <div className="bg-gray-100 bg-opacity-30 backdrop-filter backdrop-blur-lg p-8 rounded-xl shadow-lg">
-                                    <h2 className="text-2xl font-semibold mb-4 text-indigo-600">Gegenereerde Overgangen</h2>
+                                    <h2 className="text-2xl font-semibold mb-4 text-gray-800 ">Generated segues</h2>
                                     <ul className="space-y-4 list-none">
                                         {segues.map((s, index) => {
                                             const title = `${index+1} --> ${index+2}`;
