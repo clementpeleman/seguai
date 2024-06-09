@@ -72,7 +72,7 @@ export default function Home() {
                                         {segues.map((s, index) => {
                                             const title = `${index+1} --> ${index+2}`;
                                             return (
-                                                <li key={index} className="bg-gray-100 p-4 rounded-lg">
+                                                <li key={index} className="bg-white p-4 rounded-lg">
                                                     <p className="text-lg font-semibold text-indigo-600">{title}</p>
                                                     <p className="mt-2 text-gray-700">{s.segue}</p>
                                                 </li>
