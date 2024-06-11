@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
           Be creative and original. Avoid clichés and obvious transitions.`
         },
       ],
-      model: 'Qwen/Qwen2-72B-Instruct',
+      model: 'meta-llama/Llama-3-8b-hf',
     });
 
     const seguesText = response?.choices?.[0]?.message?.content?.trim() || '';
