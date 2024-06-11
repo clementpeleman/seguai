@@ -22,14 +22,14 @@ export async function POST(req: NextRequest) {
       messages: [
         {
           role: 'user',
-          content: `Geef vloeiende overgangen, zogenaamde segues, tussen de volgende paren van onderwerpen:
-          ${topicPairs.map(pair => `${pair[0]} naar ${pair[1]}`).join('; ')}.
-          Geef enkel een overgang tussen twee opeenvolgende onderwerpen. Zorg dat de overgangen doordacht en uniek zijn. 
-          Antwoord in dezelfde taal als de vraag. Voeg niets anders toe bij het antwoord dan de overgangen. Wijk niet af.
+          content: `Provide smooth transitions, called segues, between the following pairs of topics:
+          ${topicPairs.map(pair => `${pair[0]} to ${pair[1]}`).join('; ')}.
+          Only provide a transition between two consecutive topics. Make sure the transitions are thoughtful and unique. 
+          Answer in the same language as the question. Do not add anything to the answer other than the transitions. Do not deviate.
           
-          Houd het vooral kort en bondig. Gebruik maximaal 1 korte zin per overgang.
+          Above all, keep it short and to the point. Use a maximum of 1 short sentence per transition.
           
-          Wees creatief en origineel. Vermijd clichés en voor de hand liggende overgangen.`
+          Be creative and original. Avoid clichés and obvious transitions.`
         },
       ],
       model: 'Qwen/Qwen2-72B-Instruct',
