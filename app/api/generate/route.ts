@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
           Be creative and original. Avoid clichés and obvious transitions.`
         },
       ],
-      model: 'meta-llama/Llama-3-8b-hf',
+      model: 'meta-llama/Llama-2-13b-hf',
     });
 
     const seguesText = response?.choices?.[0]?.message?.content?.trim() || '';
