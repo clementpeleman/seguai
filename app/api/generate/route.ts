@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import Groq from "groq-sdk";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,15 +23,18 @@ export async function POST(req: NextRequest) {
 
     const prompt = `Provide smooth transitions, called segues, between the following pairs of topics:
           ${topicPairs.map(pair => `${pair[0]} to ${pair[1]}`).join('; ')}.
-          Only provide a transition between two consecutive topics. Make sure the transitions are thoughtful and unique. 
+          Provide a segue between each consecutive topic, do not go back around from last to first.
+          (for example: segue between only topic 1 and 2, segue between only topic 2 and 3, etc.) split each segue with a "\n".
+          
+          Make sure the transitions are thoughtful and unique. 
           Answer in the same language as the question. Do not add anything to the answer other than the transitions. Do not deviate.
           
           Above all, keep it short and to the point. Use a maximum of 1 short sentence per transition.
           
           Be creative and original. Avoid clichés and obvious transitions.`;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+    const response = await groq.chat.completions.create({
+      model: "mixtral-8x7b-32768",
       messages: [{ role: "user", content: prompt }],
     });
 
