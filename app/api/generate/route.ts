@@ -31,7 +31,9 @@ export async function POST(req: NextRequest) {
           
           Above all, keep it short and to the point. Use a maximum of 1 short sentence per transition.
           
-          Be creative and original. Avoid clichés and obvious transitions.`;
+          Be creative and original. Avoid clichés and obvious transitions.
+          
+          Answer in the same language as the subejects.`;
 
     const response = await groq.chat.completions.create({
       model: "mixtral-8x7b-32768",
